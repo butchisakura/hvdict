@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>HanViet Dictionary</title>
+    <script>var base_url = '/';</script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="//search/lunr.js"></script>
+    <script src="//search/lunr.stemmer.support.js"></script>
+    <script src="//search/lunr.vi.js"></script>
+    <script src="//search/lunr.zh.js"></script>
+    <script src="//search/worker.js"></script>
+    <script src="//search/main.js"></script>
+    <script>
+        angular.module('HanVietDictApp', []);
+    </script>
+    <script src="/js/controller/HanVietDictCtrl.js"></script>
+</head>
+<body ng-app="HanVietDictApp">
+    <div ng-controller="HanVietDictCtrl" ng-init="init()">
+        
+            
+        
+
+        
+
+        <div ng-bind="test"></div>
+
+        <div id="mkdocs-search-results" class="model"></div>
+    </div>
+</body>
+</html

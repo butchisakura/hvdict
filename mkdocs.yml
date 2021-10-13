@@ -1,0 +1,21 @@
+site_name: HanViet Dictionary
+site_description: Document for HanViet written in markdow.
+site_author: Vinh Pham
+
+docs_dir: src
+site_dir: docs
+use_directory_urls: false
+
+plugins:
+  - search:
+      min_search_length: 1
+      lang: ["vi", "ja", "zh"]
+
+theme:
+  name: null
+  custom_dir: 'hvdict_theme/'
+  include_search_page: true
+  search_index_only: false
+  static_templates:
+    - 404.html
+
