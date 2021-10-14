@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    
+    <title>的 - HanViet Dictionary</title>
+
+    <!-- https://fontawesome.com/v4.7/icons/ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>var base_url = '..';</script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="../search/lunr.js"></script>
+    <script src="../search/lunr.stemmer.support.js"></script>
+    <script src="../search/lunr.vi.js"></script>
+    <script src="../search/lunr.zh.js"></script>
+    <script src="../search/worker.js"></script>
+    <script src="../search/main.js"></script>
+    <script>
+        angular.module('HanVietDictApp', []);
+    </script>
+    <script src="/js/controller/HanVietDictCtrl.js"></script>
+</head>
+<body ng-app="HanVietDictApp">
+    <div ng-controller="HanVietDictCtrl" ng-init="init()">
+        <div class="page-header">
+            
+                <div class="search-box">
+    <form action="../search.html" method="get">
+        <input id="mkdocs-search-query" name="q" type="text" placeholder="search something..."/><i class="fa fa-search"></i>
+    </form>
+</div>
+            
+        </div>
+
+        <div class="page-body">
+            <h1 id="_1">的</h1>
+<h1 id="nghia">Nghĩa</h1>
+<ul>
+<li>的 = <a href="%E7%99%BD.html">白</a> <a href="%E5%8B%BA.html">勺</a></li>
+<li>(bạch chước)</li>
+<li>(a) của</li>
+<li>Vd:A 的 B -&gt;B của A</li>
+<li>(trợ từ cuối câu) đấy</li>
+<li>vd: 好的 tốt đấy</li>
+<li>(ngữ pháp) sau tính từ 2 chữ trở lên</li>
+<li>vd: 漂亮的人 người xinh đẹp</li>
+<li>(ngữ pháp) định ngữ lược giản</li>
+<li>vd: 这是谁的书？不是我的！ (不是我的书)</li>
+<li>(ngữ pháp) X + 的, trong đó X có thể là danh từ, đại từ, động từ, tính từ thì 的 đóng vai trò là 1 danh từ, nghĩa là <code>cái</code></li>
+<li>vd: 新的 cái mới</li>
+</ul>
+<h1 id="phat-am">Phát âm</h1>
+<ul>
+<li>de</li>
+<li>/đích</li>
+<li>để/</li>
+</ul>
+<h1 id="tags">Tags</h1>
+<ul>
+<li>/Sơ cấp//03/</li>
+<li>Hán Việt</li>
+</ul>
+        </div>
+
+        <div class="page-footer">
+            &copy; 2021 by Vinh Pham
+        </div>
+
+        <div id="mkdocs-search-results" class="model"></div>
+    </div>
+</body>
+</html

@@ -8,6 +8,8 @@
     
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
 
+    <link rel="stylesheet" href="/css/style.css">
+
     <!-- https://fontawesome.com/v4.7/icons/ -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -34,14 +36,22 @@
         </div>
 
         <div class="page-body">
+            
+            <a name="top"></a>
+
             {{ page.content }}
+
+            <div id="mkdocs-search-results" class="model"></div>
         </div>
 
         <div class="page-footer">
-            &copy; 2021 by {{config.site_author}}
+            <ul>
+                <li>&copy; 2021 by {{config.site_author}}</li>
+                <li><a href="/">Home</a></li>
+                <li><a href="#top">Top</a></li>
+                <li><a href="javascript:history.back()">Back</a></li>
+            </ul>
         </div>
-
-        <div id="mkdocs-search-results" class="model"></div>
     </div>
 </body>
 </html
