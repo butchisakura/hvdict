@@ -68,6 +68,8 @@ if __name__ == "__main__":
             template += "\r\n".join(["* " + replace_chars(c) for c in categories if c]) + "\r\n"
             template += "\r\n"
 
+        template += "<script>window.HANZI_FIELD='%s';</script>" % w["name"] + "\r\n";
+
         w["template"] = template
         # print(template)
 

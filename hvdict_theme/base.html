@@ -16,6 +16,7 @@
     <script>var base_url = '{{ base_url }}';</script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@2.2/dist/hanzi-writer.min.js"></script>
     <script src="{{ base_url }}/search/lunr.js"></script>
     <script src="{{ base_url }}/search/lunr.stemmer.support.js"></script>
     <script src="{{ base_url }}/search/lunr.vi.js"></script>
@@ -38,6 +39,8 @@
         <div class="page-body">
             
             <a name="top"></a>
+            
+            <div id="hanzi-target"></div>
 
             {{ page.content }}
 
@@ -52,6 +55,10 @@
                 <li><a href="javascript:history.back()">Back</a></li>
             </ul>
         </div>
+
+        <script type="text/javascript">
+            render_hanzi();
+         </script>
     </div>
 </body>
 </html
