@@ -78,3 +78,18 @@ article p {
     display: inline-block;
     border: 1px solid #ccc;
 }
+
+.modal{
+    position: fixed;
+    top: 48px;
+    left: 0;
+    background: #fff;
+    padding: 10px;
+    height: 100%;
+    overflow: scroll;
+    border-bottom: 1px dashed #464646;
+    padding-bottom: 113px;
+    z-index: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
