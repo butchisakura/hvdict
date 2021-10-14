@@ -16,6 +16,7 @@
     <script>var base_url = '..';</script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@2.2/dist/hanzi-writer.min.js"></script>
     <script src="../search/lunr.js"></script>
     <script src="../search/lunr.stemmer.support.js"></script>
     <script src="../search/lunr.vi.js"></script>
@@ -42,6 +43,8 @@
         <div class="page-body">
             
             <a name="top"></a>
+            
+            <div id="hanzi-target"></div>
 
             <h1 id="_1">黑</h1>
 <h1 id="nghia">Nghĩa</h1>
@@ -59,6 +62,7 @@
 <li>bộ thủ 12 nét</li>
 <li>/Sơ cấp//14/</li>
 </ul>
+<script>window.HANZI_FIELD='黑';</script>
 
             <div id="mkdocs-search-results" class="model"></div>
         </div>
@@ -71,6 +75,10 @@
                 <li><a href="javascript:history.back()">Back</a></li>
             </ul>
         </div>
+
+        <script type="text/javascript">
+            render_hanzi();
+         </script>
     </div>
 </body>
 </html

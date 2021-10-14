@@ -1,6 +1,7 @@
 site_name: HanViet Dictionary
 site_description: Document for HanViet written in markdow.
 site_author: Vinh Pham
+site_url: https://butchisakura.github.io/hvdict/
 
 docs_dir: src
 site_dir: docs

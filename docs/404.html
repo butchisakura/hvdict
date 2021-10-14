@@ -13,15 +13,16 @@
     <!-- https://fontawesome.com/v4.7/icons/ -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script>var base_url = '/';</script>
+    <script>var base_url = '/hvdict/';</script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
-    <script src="//search/lunr.js"></script>
-    <script src="//search/lunr.stemmer.support.js"></script>
-    <script src="//search/lunr.vi.js"></script>
-    <script src="//search/lunr.zh.js"></script>
-    <script src="//search/worker.js"></script>
-    <script src="//search/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@2.2/dist/hanzi-writer.min.js"></script>
+    <script src="/hvdict//search/lunr.js"></script>
+    <script src="/hvdict//search/lunr.stemmer.support.js"></script>
+    <script src="/hvdict//search/lunr.vi.js"></script>
+    <script src="/hvdict//search/lunr.zh.js"></script>
+    <script src="/hvdict//search/worker.js"></script>
+    <script src="/hvdict//search/main.js"></script>
     <script>
         angular.module('HanVietDictApp', []);
     </script>
@@ -32,7 +33,7 @@
         <div class="page-header">
             
                 <div class="search-box">
-    <form action="//search.html" method="get">
+    <form action="/hvdict//search.html" method="get">
         <input id="mkdocs-search-query" name="q" type="text" placeholder="search something..."/><i class="fa fa-search"></i>
     </form>
 </div>
@@ -42,6 +43,8 @@
         <div class="page-body">
             
             <a name="top"></a>
+            
+            <div id="hanzi-target"></div>
 
             
 
@@ -56,6 +59,10 @@
                 <li><a href="javascript:history.back()">Back</a></li>
             </ul>
         </div>
+
+        <script type="text/javascript">
+            render_hanzi();
+         </script>
     </div>
 </body>
 </html

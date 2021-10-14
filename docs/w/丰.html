@@ -16,6 +16,7 @@
     <script>var base_url = '..';</script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@2.2/dist/hanzi-writer.min.js"></script>
     <script src="../search/lunr.js"></script>
     <script src="../search/lunr.stemmer.support.js"></script>
     <script src="../search/lunr.vi.js"></script>
@@ -42,11 +43,13 @@
         <div class="page-body">
             
             <a name="top"></a>
+            
+            <div id="hanzi-target"></div>
 
             <h1 id="_1">丰</h1>
 <h1 id="nghia">Nghĩa</h1>
 <ul>
-<li>丰 = <a href="三.md">三</a> <a href="%E4%B8%A8.html">丨</a></li>
+<li>丰 = <a href="%E4%B8%89.html">三</a> <a href="%E4%B8%A8.html">丨</a></li>
 <li>họ Phong, được mùa, xung túc</li>
 </ul>
 <h1 id="phat-am">Phát âm</h1>
@@ -57,6 +60,7 @@
 <ul>
 <li>/Hán Việt/</li>
 </ul>
+<script>window.HANZI_FIELD='丰';</script>
 
             <div id="mkdocs-search-results" class="model"></div>
         </div>
@@ -69,6 +73,10 @@
                 <li><a href="javascript:history.back()">Back</a></li>
             </ul>
         </div>
+
+        <script type="text/javascript">
+            render_hanzi();
+         </script>
     </div>
 </body>
 </html
