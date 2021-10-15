@@ -1,4 +1,6 @@
 body{
+    background:#eee;
+    color:#333;
     font-size:1.1em;
 }
 
@@ -75,4 +77,19 @@ article p {
 #hanzi-target {
     display: inline-block;
     border: 1px solid #ccc;
+}
+
+.modal{
+    position: fixed;
+    top: 48px;
+    left: 0;
+    background: #fff;
+    padding: 10px;
+    height: 100%;
+    overflow: scroll;
+    border-bottom: 1px dashed #464646;
+    padding-bottom: 113px;
+    z-index: 0;
+    box-sizing: border-box;
+    width: 100%;
 }

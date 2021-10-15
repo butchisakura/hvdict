@@ -6,8 +6,11 @@ function HanVietDictCtrl($scope, $http)
     $scope.test = "Hello World 2";
 
     $scope.init = function(){
-
+        
     };
+
+    $scope.search_change = function(){
+    }
 }
 
 function render_hanzi(){
