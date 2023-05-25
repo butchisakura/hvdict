@@ -1,3 +1,6 @@
+# install
+pip install mkdocs
+
 # Update Content
 + add/update files *.md in "src" directory
 + content follow markdown format
