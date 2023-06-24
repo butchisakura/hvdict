@@ -4,6 +4,12 @@ body{
     font-size:1.1em;
 }
 
+img{
+    max-width: 300px;
+    display: inline-block;
+    border: 1px solid #ddd;
+}
+
 .page-header {
     position: fixed;
     top: 0;
@@ -15,6 +21,7 @@ body{
 
 .page-body{
     margin-top:60px;
+    padding-bottom:100px;
 }
 
 .page-footer {
