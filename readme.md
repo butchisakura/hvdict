@@ -47,3 +47,21 @@ Reference image by relative path
   + git add .
   + git commit -m "update"
   + git push
+
+# Docs
+
++ this app support markdown, includes media (images)
+
+## Structures
+  + #Word
+  + #CauTruc
+  + #PhatAm
+  + #Nghia
+  + #HinhAnh
+  + #GhiChu
+  + #Animation
+
+## Scripts
++ migration
++ export csv
++ import csv
