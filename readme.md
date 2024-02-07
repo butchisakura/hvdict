@@ -54,13 +54,13 @@ Reference image by relative path
 + this app support markdown, includes media (images)
 
 ## Structures
-  + #Word
-  + #CauTruc
-  + #PhatAm
-  + #Nghia
-  + #HinhAnh
-  + #GhiChu
-  + #Animation
+  + #word
+  + #struct
+  + #pronun
+  + #mean
+  + #picture
+  + #note
+  + #animation
 
 ## Scripts
 + migration
