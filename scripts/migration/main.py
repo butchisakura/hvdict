@@ -359,9 +359,37 @@ def import_csv():
     current_dir = os.path.dirname(__file__)
     file_path = os.path.join(current_dir, "output", "import.csv")
     with open(file_path, "r", encoding="utf-8") as fp:
-        csvFile = csv.reader(fp)
+        rows = csv.reader(fp, delimiter=",")
+        row_idx = 0
+        for row in rows:
+            # ignore header
+            if row_idx == 0:
+                continue
+            parts = []
+            
+            parts.append("# " + row[1])
+            parts.append("")
+
+            # TODO: generate x = [y](y.md) [z](z.md)
+            # + split by space => list
+            parts.append("## Cấu trúc")
+            parts.append(row[4])
+            parts.append("")
+
+            parts.append("## Phát âm")
+            parts.append(row[2])
+            parts.append("")
+
+            parts.append("## Nghĩa")
+            parts.append(row[3])
+            parts.append("")
+
+            content = "\n".join(parts)
+            content = content.replace("\\n", "\n")
+
         # TODO: read lines, every line is a file
         # TODO: generate file structure
+        # TODO: replace \\n with \n
         # TODO: export to directory tmp (output)
 
 if __name__ == "__main__":
