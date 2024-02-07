@@ -1,7 +1,9 @@
 # TODO
 
+# 2024-02-07
++ replace # to ##
+
 ## Normalize
-+ remove #Tag
 + remove /phat am/ => PhatAm
 + remove /Chu giai/ => Ghi chu
 + standard structures:

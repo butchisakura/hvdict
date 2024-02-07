@@ -2,6 +2,7 @@ https://www.mkdocs.org/getting-started/
 
 # install
 pip install mkdocs
+pip install markdown
 
 # Update Content
 + add/update files *.md in "src" directory
