@@ -2,18 +2,10 @@
 
 # 2024-02-07
 + replace # to ##
++ remove /Chu giai/ => Ghi chu
 
 ## Normalize
 + remove /phat am/ => PhatAm
-+ remove /Chu giai/ => Ghi chu
-+ standard structures:
-    + #Word
-    + #CauTruc
-    + #PhatAm
-    + #Nghia
-    + #HinhAnh
-    + #GhiChu
-    + #Animation
 
 ## Import csv
 + structure: stt,hanviet,phatam,nghia,cautruc,0,1,2,3,4,5,6,7,8,9

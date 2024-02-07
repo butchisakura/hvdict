@@ -2,6 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 import glob
 import re
+import csv
 
 def replace_chars(s):
     if not s:
@@ -131,7 +132,7 @@ def normalize_heading(filename, content):
         if re.match(r"^# Hình ảnh$", line):
             line = line.replace("# Hình ảnh", "## Hình ảnh")
         if re.match(r"^# Chú giải$", line):
-            line = line.replace("# Chú giải", "## Chú giải")
+            line = line.replace("# Chú giải", "## Ghi chú")
 
         # overwrite
         lines[idx] = line
@@ -194,6 +195,21 @@ def normalize_structure(filename, content):
 
     return content
 
+def normalize_extra_newline(filename, content):
+    # remove extra lines
+    # \n 1st on previous line #something
+    # \n 2nd, 3rd on current + next lines
+    # replace with 2 newline (previous, current)
+    print("normalize_extra_newline file ", filename)
+    content = re.sub(r"\n{3,}", "\n\n", content)
+    return content
+
+def normalize_obsolete_pronun(filename, content):
+    # /abc/ => abc
+    print("normalize_obsolete_pronun file ", filename)
+    content = re.sub(r"/(.+)/", "Hán Việt: \\1", content)
+    return content
+
 def normalize():
     current_dir = os.path.dirname(__file__)
     working_dir = current_dir + "../../../src/w/"
@@ -215,9 +231,8 @@ def normalize():
         content = normalize_heading(filename, content)
         content = normalize_bullet(filename, content)       
         content = normalize_structure(filename, content)
-        
-        # remove extra lines
-        content = re.sub(r"\n{2,}+", "\n", content)
+        content = normalize_extra_newline(filename, content)
+        content = normalize_obsolete_pronun(filename, content)
 
         # save as
         print("Saving file ", filename)
@@ -225,6 +240,121 @@ def normalize():
             fp.write(content)
         print("Done file ", filename)
 
+def get_section(lines, index):
+    idx = index
+    while idx >= 0:
+        line = lines[idx]
+        if re.match(r"^#[^#]+", line):
+            return "#word"
+        if re.match(r"^## Cấu trúc", line):
+            return "#struct"
+        if re.match(r"^## Phát âm", line):
+            return "#pronun"
+        if re.match(r"^## Nghĩa", line):
+            return "#mean"
+        if re.match(r"^## Hình ảnh", line):
+            return "#picture"
+        if re.match(r"^## Ghi chú", line):
+            return "#note"
+        if re.match(r"^## Tags", line):
+            return "#tag"
+        idx = idx - 1   # down from current line to 0
+    return "#unknown"
+
+def export_csv():
+    current_dir = os.path.dirname(__file__)
+    working_dir = current_dir + "../../../src/w/"
+    working_dir = os.path.abspath(working_dir)
+
+    md_files = glob.glob(working_dir + "/*.md")
+    print("Number files %s" % len(md_files))
+
+    header_row = ["word", "pronun", "mean", "structure"]
+    rows = []
+
+    for f in md_files:
+        filename = os.path.basename(f)
+        print("Reading file ", filename)
+
+        content = ""
+        with open(f, "r", encoding="utf-8") as fp:
+            content = fp.read()
+        
+        data_word = ""
+        data_structure = ""
+        data_pronun = ""
+        data_mean = ""
+        data_means_parts = []
+
+        # 0:word 1:structure 2:mean
+        section = 0
+        lines = content.split("\n")
+        for idx in range(len(lines)):
+            # ignore empty line
+            if not lines[idx].strip():
+                continue
+
+            # ignore script
+            if lines[idx].startswith("<script"):
+                continue
+
+            section = get_section(lines, idx)
+
+            # get one
+            if not data_word and section == "#word":
+                data_word = lines[idx][2:]
+                continue
+
+            # get one
+            if not data_structure and section == "#struct":
+                if lines[idx] == "## Cấu trúc":
+                    continue
+                # * x = [y](y.md) [z](z.md) [t](t.md)
+                # re.findall(r"\[([^]]+)\]", data)
+                parts = re.findall(r"\[([^]]+)\]", lines[idx][2:])
+                data_structure = " ".join(parts)
+                continue
+            
+            # get one
+            if not data_pronun and section == "#pronun":
+                if lines[idx] == "## Phát âm":
+                    continue
+                data_pronun = lines[idx][2:].replace("Hán Việt: ", "")
+                continue
+
+            # get multiple
+            if section == "#mean":
+                if lines[idx] == "## Nghĩa":
+                    continue
+                # accumulate item then re-overwrite
+                data_means_parts.append(lines[idx][2:])
+
+                # encode newline to safe for csv
+                data_mean = "\n".join(data_means_parts).replace("\n", "\\n")
+                continue
+
+        row = [data_word, data_pronun, data_mean, data_structure]
+        rows.append(row)
+
+    output_dir = os.path.join(current_dir, "output")
+    if not os.path.exists(output_dir):
+        print("creating output directory ", output_dir)
+        os.mkdir(output_dir)
+
+    print("exporting num rows=", len(rows))
+    filepath = os.path.join(output_dir, "export.csv")
+    with open(filepath, "w", encoding="utf-8", newline='') as f:
+        # delimiter: using , will generate "" if content has comma (current used)
+        # Google sheet: using function ARRAYFORMULA(SUBSTITUDE(C1:C,"\n", CHAR(10))
+        # + char(10) will generate new line
+        # + avoid copy to origin column, just show only on new column
+        writer = csv.writer(f, delimiter=",", escapechar=' ')
+        writer.writerow(header_row)
+        writer.writerows(rows)
+    print("export done")
+
+
 if __name__ == "__main__":
     # migrate_data()
-    normalize()
+    # normalize()
+    export_csv()
