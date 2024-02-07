@@ -353,6 +353,16 @@ def export_csv():
         writer.writerows(rows)
     print("export done")
 
+def import_csv():
+    # headers: STT,Hán Việt,Phát âm,Nghĩa,Cấu trúc,0,1,2,3,4,5,6,7,8,9
+    # data: 4,時,thời,giờ,日 寺,日,寺,,,,,,,,
+    current_dir = os.path.dirname(__file__)
+    file_path = os.path.join(current_dir, "output", "import.csv")
+    with open(file_path, "r", encoding="utf-8") as fp:
+        csvFile = csv.reader(fp)
+        # TODO: read lines, every line is a file
+        # TODO: generate file structure
+        # TODO: export to directory tmp (output)
 
 if __name__ == "__main__":
     # migrate_data()
