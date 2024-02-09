@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 import glob
 import re
 import csv
+import sys
 
 def replace_chars(s):
     if not s:
@@ -358,41 +359,71 @@ def import_csv():
     # data: 4,時,thời,giờ,日 寺,日,寺,,,,,,,,
     current_dir = os.path.dirname(__file__)
     file_path = os.path.join(current_dir, "output", "import.csv")
+    if not os.path.exists(file_path):
+        print("File not existed: ", file_path)
+        return
+    
     with open(file_path, "r", encoding="utf-8") as fp:
         rows = csv.reader(fp, delimiter=",")
         row_idx = 0
         for row in rows:
             # ignore header
             if row_idx == 0:
+                row_idx = row_idx + 1
                 continue
-            parts = []
             
-            parts.append("# " + row[1])
+            data_word = row[1]
+
+            parts = []
+            parts.append("# " + data_word)
             parts.append("")
 
-            # TODO: generate x = [y](y.md) [z](z.md)
-            # + split by space => list
-            parts.append("## Cấu trúc")
-            parts.append(row[4])
-            parts.append("")
+            if row[4]:
+                parts.append("## Cấu trúc")
+                tokens = row[4].split(" ")
+                tokens = ["[%s](%s.md)" % (s.strip(), s.strip()) for s in tokens]
+                parts.append("* %s = %s" % (data_word, " ".join(tokens)))
+                parts.append("")
 
-            parts.append("## Phát âm")
-            parts.append(row[2])
-            parts.append("")
+            if row[2]:
+                parts.append("## Phát âm")
+                tokens = row[2].split(",")
+                tokens = ["* Hán Việt: " + t.strip() for t in tokens]
+                parts.extend(tokens)
+                parts.append("")
 
-            parts.append("## Nghĩa")
-            parts.append(row[3])
-            parts.append("")
+            if row[3]:
+                parts.append("## Nghĩa")
+                tokens = row[3].split(",")
+                tokens = ["* " + t.strip() for t in tokens]
+                parts.extend(tokens)
+                parts.append("")
+
+            parts.append("<script>window.HANZI_FIELD='%s';</script>" % data_word)
 
             content = "\n".join(parts)
             content = content.replace("\\n", "\n")
 
-        # TODO: read lines, every line is a file
-        # TODO: generate file structure
-        # TODO: replace \\n with \n
-        # TODO: export to directory tmp (output)
+            export_filename = data_word + ".md"
+            export_file = os.path.join(current_dir, "output", export_filename)
+            with open(export_file, "w", encoding="utf-8") as wp:
+                wp.write(content)
+            print("Import & output file ", export_filename)
+
 
 if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("action is required: migrate | normalize | export | import")
+        exit(1)
+    action = sys.argv[1]
+    action_mapping = {
+        "migrate": migrate_data,
+        "normalize": normalize,
+        "export": export_csv,
+        "import": import_csv
+    }
+    action_mapping[action]()
     # migrate_data()
     # normalize()
-    export_csv()
+    # export_csv()
+    # import_csv()
