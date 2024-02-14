@@ -132,8 +132,8 @@ def normalize_heading(filename, content):
             line = line.replace("# Tags", "## Tags")
         if re.match(r"^# Hình ảnh$", line):
             line = line.replace("# Hình ảnh", "## Hình ảnh")
-        if re.match(r"^# Chú giải$", line):
-            line = line.replace("# Chú giải", "## Ghi chú")
+        if re.match(r"^# Ghi chú$", line):
+            line = line.replace("# Ghi chú", "## Ghi chú")
 
         # overwrite
         lines[idx] = line
