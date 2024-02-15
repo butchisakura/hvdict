@@ -33,8 +33,9 @@ def decode_base64(str):
 def replace_chars(s):
     if not s:
         return s
-    s = s.replace("[", "/")
-    s = s.replace("]", "/")
+    # anh huong den image markdown
+    # s = s.replace("[", "/")
+    # s = s.replace("]", "/")
     s = s.strip()
     return s
 
@@ -373,7 +374,7 @@ def export_csv():
                 if lines[idx] == SECTION_PICTURE:
                     continue
                 # accumulate item then re-overwrite
-                data_picture_parts.append(lines[idx][2:].replace("!", "'!"))
+                data_picture_parts.append(lines[idx][2:])
                 continue
             
             # Note: array
