@@ -418,7 +418,7 @@ def export_csv():
         # Google sheet: using function ARRAYFORMULA(SUBSTITUDE(C1:C,"\n", CHAR(10))
         # + char(10) will generate new line
         # + avoid copy to origin column, just show only on new column
-        writer = csv.writer(f, delimiter=",", escapechar=' ')
+        writer = csv.writer(f, delimiter=",")
         writer.writerow(header_row)
         writer.writerows(rows)
     print("export done")
@@ -530,8 +530,8 @@ def cli():
     action_mapping[action]()
 
 if __name__ == "__main__":
-    # cli()
+    cli()
     # migrate_data()
     # normalize()
-    export_csv()
+    # export_csv()
     # import_csv()
