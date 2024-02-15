@@ -284,7 +284,7 @@ def get_section_hash(lines, index):
         if re.match(r"^" + SECTION_NOTE, line):
             return HASH_NOTE
         if re.match(r"^" + SECTION_TAG, line):
-            return HASH_NOTE
+            return HASH_TAG
         idx = idx - 1   # down from current line to 0
     return "#unknown"
 
@@ -529,8 +529,8 @@ def cli():
     action_mapping[action]()
 
 if __name__ == "__main__":
-    cli()
+    # cli()
     # migrate_data()
     # normalize()
-    # export_csv()
+    export_csv()
     # import_csv()
