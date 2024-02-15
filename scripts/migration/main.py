@@ -6,6 +6,8 @@ import csv
 import sys
 import base64
 
+JOIN_NEW_LINE = " ; "   # used to replace \n => ' ; '
+
 HASH_WORD = "#word"
 HASH_STRUCT = "#struct"
 HASH_PRONUN = "#pronun"
@@ -397,11 +399,11 @@ def export_csv():
         # Word | Pronun | Mean | Picture | Note | Tag | Structure
         row = [
             data_word, 
-            "\n".join(data_pronun_parts).replace("\n", "\\n"),
-            "\n".join(data_mean_parts).replace("\n", "\\n"), 
-            encode_base64("\n".join(data_picture_parts).replace("\n", "\\n")), 
-            "\n".join(data_note_parts).replace("\n", "\\n"), 
-            "\n".join(data_tag_parts).replace("\n", "\\n"), 
+            "\n".join(data_pronun_parts).replace("\n", JOIN_NEW_LINE),
+            "\n".join(data_mean_parts).replace("\n", JOIN_NEW_LINE), 
+            encode_base64("\n".join(data_picture_parts).replace("\n", JOIN_NEW_LINE)), 
+            "\n".join(data_note_parts).replace("\n", JOIN_NEW_LINE), 
+            "\n".join(data_tag_parts).replace("\n", JOIN_NEW_LINE), 
             data_structure
         ]
         rows.append(row)
@@ -464,14 +466,14 @@ def import_csv():
 
             if row[2]:
                 parts.append(SECTION_PRONUN)
-                tokens = row[2].split("\\n")
+                tokens = row[2].split(JOIN_NEW_LINE)
                 tokens = ["* " + t.strip() for t in tokens]
                 parts.extend(tokens)
                 parts.append("")
 
             if row[3]:
                 parts.append(SECTION_MEAN)
-                tokens = row[3].split("\\n")
+                tokens = row[3].split(JOIN_NEW_LINE)
                 tokens = ["* " + t.strip() for t in tokens]
                 parts.extend(tokens)
                 parts.append("")
@@ -479,21 +481,21 @@ def import_csv():
             if row[4]:
                 parts.append(SECTION_PICTURE)
                 picture_data = decode_base64(row[4])
-                tokens = picture_data.split("\\n")
+                tokens = picture_data.split(JOIN_NEW_LINE)
                 tokens = ["* " + t.strip() for t in tokens if t.strip()]
                 parts.extend(tokens)
                 parts.append("")
 
             if row[5]:
                 parts.append(SECTION_NOTE)
-                tokens = row[5].split("\\n")
+                tokens = row[5].split(JOIN_NEW_LINE)
                 tokens = ["* " + t.strip() for t in tokens]
                 parts.extend(tokens)
                 parts.append("")
 
             if row[6]:
                 parts.append(SECTION_TAG)
-                tokens = row[6].split("\\n")
+                tokens = row[6].split(JOIN_NEW_LINE)
                 tokens = ["* " + t.strip() for t in tokens]
                 parts.extend(tokens)
                 parts.append("")
@@ -508,7 +510,7 @@ def import_csv():
             parts.append("<script>window.HANZI_FIELD='%s';</script>" % data_word)
 
             content = "\n".join(parts)
-            content = content.replace("\\n", "\n")
+            content = content.replace(JOIN_NEW_LINE, "\n")
 
             export_filename = data_word + ".md"
             export_file = os.path.join(current_dir, "output", export_filename)
