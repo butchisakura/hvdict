@@ -530,8 +530,8 @@ def cli():
     action_mapping[action]()
 
 if __name__ == "__main__":
-    # cli()
+    cli()
     # migrate_data()
     # normalize()
-    export_csv()
+    # export_csv()
     # import_csv()
