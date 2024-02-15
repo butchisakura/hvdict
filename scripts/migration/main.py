@@ -341,7 +341,7 @@ def export_csv():
 
             # Word: single
             if not data_word and section_hash == HASH_WORD:
-                data_word = lines[idx][2:]
+                data_word = lines[idx].replace("# ", "")
                 continue
 
             # Struct: single
@@ -350,7 +350,7 @@ def export_csv():
                     continue
                 # * x = [y](y.md) [z](z.md) [t](t.md)
                 # re.findall(r"\[([^]]+)\]", data)
-                parts = re.findall(r"\[([^]]+)\]", lines[idx][2:])
+                parts = re.findall(r"\[([^]]+)\]", lines[idx].replace("* ", ""))
                 data_structure = " ".join(parts)
                 continue
             
@@ -358,7 +358,7 @@ def export_csv():
             if section_hash == HASH_PRONUN:
                 if lines[idx] == SECTION_PRONUN:
                     continue
-                data_pronun_parts.append(lines[idx][2:])
+                data_pronun_parts.append(lines[idx].replace("* ", ""))
                 continue
 
             # Mean: array
@@ -366,7 +366,7 @@ def export_csv():
                 if lines[idx] == SECTION_MEAN:
                     continue
                 # accumulate item then re-overwrite
-                data_mean_parts.append(lines[idx][2:])
+                data_mean_parts.append(lines[idx].replace("* ", ""))
                 continue
 
             # Picture: array
@@ -374,7 +374,7 @@ def export_csv():
                 if lines[idx] == SECTION_PICTURE:
                     continue
                 # accumulate item then re-overwrite
-                data_picture_parts.append(lines[idx][2:])
+                data_picture_parts.append(lines[idx].replace("* ", ""))
                 continue
             
             # Note: array
@@ -382,7 +382,7 @@ def export_csv():
                 if lines[idx] == SECTION_NOTE:
                     continue
                 # accumulate item then re-overwrite
-                data_note_parts.append(lines[idx][2:])
+                data_note_parts.append(lines[idx].replace("* ", ""))
                 continue
 
             # Tag: array
@@ -390,7 +390,7 @@ def export_csv():
                 if lines[idx] == SECTION_TAG:
                     continue
                 # accumulate item then re-overwrite
-                data_tag_parts.append(lines[idx][2:])
+                data_tag_parts.append(lines[idx].replace("* ", ""))
                 continue
 
 
@@ -530,8 +530,8 @@ def cli():
     action_mapping[action]()
 
 if __name__ == "__main__":
-    cli()
+    # cli()
     # migrate_data()
     # normalize()
-    # export_csv()
+    export_csv()
     # import_csv()
