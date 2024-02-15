@@ -465,7 +465,7 @@ def import_csv():
             if row[2]:
                 parts.append(SECTION_PRONUN)
                 tokens = row[2].split("\\n")
-                tokens = ["* Hán Việt: " + t.strip() for t in tokens]
+                tokens = ["* " + t.strip() for t in tokens]
                 parts.extend(tokens)
                 parts.append("")
 
