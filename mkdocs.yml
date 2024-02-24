@@ -3,7 +3,7 @@ site_description: Document for HanViet written in markdow.
 site_author: Vinh Pham
 site_url: https://butchisakura.github.io/hvdict/
 
-site_build_version: 1.0.14
+site_build_version: 1.0.15
 
 docs_dir: src
 site_dir: docs
