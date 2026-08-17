@@ -49,6 +49,23 @@ Reference image by relative path
   + git commit -m "update"
   + git push
 
+```bash
+# update mkdocs.yml > site_build_version
+
+# build source
+mkdocs build
+
+# update master
+git add .
+git commit -m "update"
+git push
+
+# update release
+git checkout release
+git merge master --no-edit
+git push
+```
+
 # Docs
 
 + this app support markdown, includes media (images)
