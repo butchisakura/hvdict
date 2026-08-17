@@ -33,7 +33,7 @@ Customize in theme directory
 https://www.mkdocs.org/user-guide/writing-your-docs/#linking-to-images-and-media
 
 Method 1: put image into hvdict_theme/img
-Method 2: put imgae into src/img
+Method 2: put image into src/img
 
 Reference image by relative path
 
@@ -62,7 +62,21 @@ Reference image by relative path
   + #note
   + #animation
 
+```
+Phát âm
+Nghĩa
+Hình ảnh
+Ghi chú
+Tags
+```
+
 ## Scripts
 + migration
 + export csv
 + import csv
+
+## Reference
+* https://xiehanzi.com/
+* https://hanzii.net/
+* https://hvdic.thivien.net/
+* https://dictionary.zim.vn/
